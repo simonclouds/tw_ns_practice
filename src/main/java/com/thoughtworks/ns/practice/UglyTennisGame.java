@@ -6,8 +6,8 @@ public class UglyTennisGame implements TennisGame {
     public int P1point = 0;
     public int P2point = 0;
 
-    public String P1res = "";
-    public String P2res = "";
+    //public String P1res = "";
+    //public String P2res = "";
     private String player1Name;
     private String player2Name;
 
@@ -16,7 +16,7 @@ public class UglyTennisGame implements TennisGame {
         this.player2Name = player2Name;
     }
 
-    public String getScore(){
+    /*public String getScore2(){
         String score = "";
         if (P1point == P2point && P1point < 4)
         {
@@ -100,9 +100,79 @@ public class UglyTennisGame implements TennisGame {
             score = format("Win for %s", player2Name);
         }
         return score;
+    }*/
+
+
+    public String getScore()
+    {
+        String score = "";
+        if (P1point <=4 && P2point <=4) {
+            switch (P1point) {
+                case 0:
+                    switch (P2point){
+                        case 0: score = "Love-All";break;
+                        case 1: score = "Love-Fifteen"; break;
+                        case 2: score = "Love-Thirty";break;
+                        case 3: score = "Love-Forty";break;
+                        case 4: score = format("Win for %s", player2Name);break;
+                    }
+                    break;
+                case 1:
+                    switch (P2point){
+                        case 0: score = "Fifteen-Love";break;
+                        case 1: score = "Fifteen-All";break;
+                        case 2: score = "Fifteen-Thirty";break;
+                        case 3: score = "Fifteen-Forty";break;
+                        case 4: score = format("Win for %s", player2Name);break;
+                    }
+                    break;
+                case 2:
+                    switch (P2point){
+                        case 0: score = "Thirty-Love";break;
+                        case 1: score = "Thirty-Fifteen";break;
+                        case 2: score = "Thirty-All";break;
+                        case 3: score = "Thirty-Forty";break;
+                        case 4: score = format("Win for %s", player2Name);break;
+                    }
+                    break;
+                case 3:
+                    switch (P2point){
+                        case 0: score = "Forty-Love";break;
+                        case 1: score = "Forty-Fifteen";break;
+                        case 2: score = "Forty-Thirty";break;
+                        case 3: score = "Deuce";break;
+                        case 4: score = format("Advantage %s",player2Name);break;
+                    }
+                    break;
+                case 4:
+                    switch (P2point){
+                        case 0:
+                        case 1:
+                        case 2: score = format("Win for %s",player1Name);break;
+                        case 3: score = format("Advantage %s",player1Name);break;
+                        case 4: score = "Deuce";break;
+                    }
+                    break;
+            }
+        }
+        else {
+            int diff = Math.abs(P1point - P2point);
+            String playerName = P1point > P2point? player1Name:player2Name;
+            switch (diff) {
+                case 0:
+                    score = "Deuce";break;
+                case 1:
+                    score = format("Advantage %s",playerName);
+                    break;
+                case 2:
+                default:
+                    score = format("Win for %s",playerName);
+            }
+        }
+        return score;
     }
 
-    public void SetP1Score(int number){
+/*    public void SetP1Score(int number){
 
         for (int i = 0; i < number; i++)
         {
@@ -119,7 +189,7 @@ public class UglyTennisGame implements TennisGame {
         }
 
     }
-
+ */
     public void P1Score(){
         P1point++;
     }
